@@ -147,7 +147,7 @@
         left: 0;
         right: 0;
         bottom: 20px;
-        .map {
+        #map {
             position: absolute;
             left: 0;
             right: 350px;
@@ -218,6 +218,7 @@
     }
     .entity-detail {
         position: absolute;
+        background:white;
         right: 350px;
         top: 0px;
         bottom: 10px;
@@ -292,6 +293,7 @@
             }
         }
         .entity-content {
+            background:white;
             padding:30px;
             ul {
                 list-style-type: none;

@@ -18,7 +18,7 @@ olxListing.vm.init = function() {
     this.selectedBrand = m.prop([]);
     this.showEntityDetail = m.prop(false);
     this.entityDetail = m.prop({});
-    this.selectedCategory = m.prop("bikes")
+    this.selectedCategory = m.prop("cars")
     this.bikes_brand = m.prop([
             "Hero Honda", "Bajaj",
         ]),
@@ -140,8 +140,8 @@ olxListing.vm.init = function() {
             "seller": "Ashish Jindal",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.555479",
+                "longitude": "77.196668",
                 "text": ""
             },
             "image": "images/car-1.jpg"
@@ -152,8 +152,8 @@ olxListing.vm.init = function() {
             "seller": "Vaibhav Arora",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.521835",
+                "longitude": "77.167662",
                 "text": ""
             },
             "image": "images/car-2.jpg"
@@ -164,8 +164,8 @@ olxListing.vm.init = function() {
             "seller": "Aatif bandey",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.523042",
+                "longitude": "76.796873",
                 "text": ""
             },
             "image": "images/car-3.jpg"
@@ -176,8 +176,8 @@ olxListing.vm.init = function() {
             "seller": "Ashish Jindal",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.861552",
+                "longitude": "76.817472",
                 "text": ""
             },
             "image": "images/car-4.jpg"
@@ -188,8 +188,8 @@ olxListing.vm.init = function() {
             "seller": "Ashish Jindal",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.721944",
+                "longitude": "77.085264",
                 "text": ""
             },
             "image": "images/car-5.jpg"
@@ -200,8 +200,8 @@ olxListing.vm.init = function() {
             "seller": "Ashish Jindal",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.808619",
+                "longitude": "77.123716",
                 "text": ""
             },
             "image": "images/car-6.jpg"
@@ -212,42 +212,21 @@ olxListing.vm.init = function() {
             "seller": "Ashish Jindal",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.701468",
+                "longitude": "77.226713",
                 "text": ""
             },
             "image": "images/car-7.jpg"
-        }, {
-            "id": "1",
-            "brand": "Maruti",
-            "price": "55000",
-            "seller": "Ashish Jindal",
-            "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
-                "text": ""
-            },
-            "image": "images/car-8.jpg"
-        }, {
-            "id": "1",
-            "brand": "Hyundai",
-            "price": "55000",
-            "seller": "Ashish Jindal",
-            "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
-                "text": ""
-            },
-            "image": "images/car-9.jpg"
         }]
     });
+    
+    this.mapInitialized = m.prop(false);
 }
 
 
 olxListing.controller = function() {
     olxListing.vm.init();
+    olxListing.loadScript();
 }
 
 olxListing.scroll = function(val) {
@@ -262,6 +241,85 @@ olxListing.showDetail = function(val1, val2) {
     console.log(val2);
 
 }
+
+function setMarkers(map,locations){
+    //olxListing.vm.init();
+      var marker, i;
+
+/*locations.map(function(value,index){
+    latlngset = new google.maps.LatLng(value.location.lattitude, value.location.longitude);
+    var marker = new google.maps.Marker({  
+          map: map, title: value.brand , position: latlngset  
+        });
+        map.setCenter(marker.getPosition());
+});*/
+
+for (i = 0; i < locations.length; i++)
+ {  
+
+ var loan = locations[i].price;
+ //alert(locations[i].location.lattitude);
+var lat = locations[i].location.lattitude;
+var long = locations[i].location.longitude;
+ //var lat = "27.613985";
+ //var long = "77.238630";
+ var add =  locations[i].seller;
+
+ latlngset = new google.maps.LatLng(lat,long);
+
+  var marker = new google.maps.Marker({  
+          map: map, title: loan , position: latlngset  
+        });
+        map.setCenter(marker.getPosition())
+
+
+        var content = "Price: " + loan +  '</h3>' + "Seller: " + add    + '<img class="img-responsive" style="height:100px;" style="width:100px;" src="' + locations[i].image  + '"/>'
+
+  var infowindow = new google.maps.InfoWindow()
+
+google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+         //olxListing.showDetail(true,location);
+        return function() {
+           infowindow.setContent(content);
+           infowindow.open(map,marker);
+          
+        };
+    })(marker,content,infowindow)); 
+
+  }
+}
+
+
+
+
+
+function initialize(){
+    var myLatLng = {lat: 28.613499, lng:77.237699};
+    if(!olxListing.vm.mapInitialized()){
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: myLatLng
+  });
+
+  /*var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });*/
+  setMarkers(map,olxListing.vm.data()["cars"]);
+  olxListing.vm.mapInitialized(true);
+}
+}
+
+olxListing.loadScript = function() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false&' +
+    'callback=initialize';
+  document.body.appendChild(script);
+}
+
+
 
 olxListing.view = function() {
     return m(".container-fluid", [
@@ -378,7 +436,9 @@ olxListing.view = function() {
             return l;
         })()),
         m(".row.content", [
-            m(".map", "map"),
+            m("#map",{
+                //config:olxListing.loadScript
+            }, "map"),
             m("ul.list", [
                 (function() {
                     var list = [];
