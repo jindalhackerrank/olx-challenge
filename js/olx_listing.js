@@ -54,7 +54,7 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Aatif bandey",
             "contact": "9582223889",
-             "location": {
+            "location": {
                 "lattitude": "28.523042",
                 "longitude": "76.796873",
                 "text": ""
@@ -66,7 +66,7 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-             "location": {
+            "location": {
                 "lattitude": "28.861552",
                 "longitude": "76.817472",
                 "text": ""
@@ -78,7 +78,7 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-             "location": {
+            "location": {
                 "lattitude": "28.721944",
                 "longitude": "77.085264",
                 "text": ""
@@ -90,7 +90,7 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-             "location": {
+            "location": {
                 "lattitude": "28.721944",
                 "longitude": "77.085264",
                 "text": ""
@@ -102,7 +102,7 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-             "location": {
+            "location": {
                 "lattitude": "28.721944",
                 "longitude": "77.085264",
                 "text": ""
@@ -114,7 +114,7 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-             "location": {
+            "location": {
                 "lattitude": "28.721944",
                 "longitude": "77.085264",
                 "text": ""
@@ -126,7 +126,7 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-             "location": {
+            "location": {
                 "lattitude": "28.721944",
                 "longitude": "77.085264",
                 "text": ""
@@ -219,7 +219,7 @@ olxListing.vm.init = function() {
             "image": "images/car-7.jpg"
         }]
     });
-    
+
     this.mapInitialized = m.prop(false);
 }
 
@@ -242,81 +242,85 @@ olxListing.showDetail = function(val1, val2) {
 
 }
 
-function setMarkers(map,locations){
+function setMarkers(map, locations) {
     //olxListing.vm.init();
-      var marker, i;
+    var marker, i;
 
-/*locations.map(function(value,index){
-    latlngset = new google.maps.LatLng(value.location.lattitude, value.location.longitude);
-    var marker = new google.maps.Marker({  
-          map: map, title: value.brand , position: latlngset  
-        });
-        map.setCenter(marker.getPosition());
-});*/
+    /*locations.map(function(value,index){
+        latlngset = new google.maps.LatLng(value.location.lattitude, value.location.longitude);
+        var marker = new google.maps.Marker({  
+              map: map, title: value.brand , position: latlngset  
+            });
+            map.setCenter(marker.getPosition());
+    });*/
 
-for (i = 0; i < locations.length; i++)
- {  
+    for (i = 0; i < locations.length; i++) {
 
- var loan = locations[i].price;
- //alert(locations[i].location.lattitude);
-var lat = locations[i].location.lattitude;
-var long = locations[i].location.longitude;
- //var lat = "27.613985";
- //var long = "77.238630";
- var add =  locations[i].seller;
+        var loan = locations[i].price;
+        //alert(locations[i].location.lattitude);
+        var lat = locations[i].location.lattitude;
+        var long = locations[i].location.longitude;
+        //var lat = "27.613985";
+        //var long = "77.238630";
+        var add = locations[i].seller;
 
- latlngset = new google.maps.LatLng(lat,long);
+        latlngset = new google.maps.LatLng(lat, long);
 
-  var marker = new google.maps.Marker({  
-          map: map, title: loan , position: latlngset  
+        var marker = new google.maps.Marker({
+            map: map,
+            title: loan,
+            position: latlngset
         });
         map.setCenter(marker.getPosition())
 
 
-        var content = "Price: " + loan +  '</h3>' + "Seller: " + add    + '<img class="img-responsive" style="height:100px;" style="width:100px;" src="' + locations[i].image  + '"/>'
+        var content = "Price: " + loan + '</h3>' + "Seller: " + add + '<img class="img-responsive" style="height:100px;" style="width:100px;" src="' + locations[i].image + '"/>'
 
-  var infowindow = new google.maps.InfoWindow()
+        var infowindow = new google.maps.InfoWindow()
 
-google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-         //olxListing.showDetail(true,location);
-        return function() {
-           infowindow.setContent(content);
-           infowindow.open(map,marker);
-          
-        };
-    })(marker,content,infowindow)); 
+        google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+            //olxListing.showDetail(true,location);
+            return function() {
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
 
-  }
+            };
+        })(marker, content, infowindow));
+
+    }
 }
 
 
 
 
 
-function initialize(){
-    var myLatLng = {lat: 28.613499, lng:77.237699};
-    if(!olxListing.vm.mapInitialized()){
-    var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
-    center: myLatLng
-  });
+function initialize() {
+    var myLatLng = {
+        lat: 28.613499,
+        lng: 77.237699
+    };
+    if (!olxListing.vm.mapInitialized()) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: myLatLng
+        });
 
-  /*var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Hello World!'
-  });*/
-  setMarkers(map,olxListing.vm.data()["cars"]);
-  olxListing.vm.mapInitialized(true);
-}
+        /*var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });*/
+        setMarkers(map, olxListing.vm.data()["cars"]);
+        olxListing.vm.mapInitialized(true);
+    }
 }
 
 olxListing.loadScript = function() {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false&' +
-    'callback=initialize';
-  document.body.appendChild(script);
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false&' +
+        'callback=initialize';
+    document.body.appendChild(script);
 }
 
 
@@ -334,7 +338,7 @@ olxListing.view = function() {
                     m("i.fa.fa-bars.fa-lg"),
                     m("img[src=images/logo.png].hidden-xs"),
                 ]),
-                m("div.search", m("input[type=text]"))
+               /* m("div.search", m("input[type=text]"))*/
             ])
         ]),
         m(".row.filter", [
@@ -366,12 +370,12 @@ olxListing.view = function() {
                     }
                 }, [m("span.filter-text", "Brand"), m("i.fa.fa-angle-down.fa-lg")]),
             ]),
-            m(".right-part.col-md-4", [
+            /*m(".right-part.col-md-4", [
                 m(".shortlist", [
                     m(".set-height"),
                     m("i.fa.fa-heart-o.fa-lg"), m("span.shortlist-text", "Shortlist")
                 ])
-            ])
+            ])*/
         ]),
         m(".category-filter", {
             class: olxListing.vm.showFilter() == "category" ? "" : "hidden"
@@ -436,7 +440,7 @@ olxListing.view = function() {
             return l;
         })()),
         m(".row.content", [
-            m("#map",{
+            m("#map", {
                 //config:olxListing.loadScript
             }, "map"),
             m("ul.list", [
@@ -483,14 +487,14 @@ olxListing.view = function() {
                     return m(".entity-detail", [
                         m(".entity-images", m("img.img-responsive[src=" + olxListing.vm.entityDetail()["image"] + "]")),
                         m(".entity-content", [
-                            m("h3","Seller : " + olxListing.vm.entityDetail().seller),
-                            m("h4","Price : " + olxListing.vm.entityDetail().price),
-                            m("h5","Contact : " + olxListing.vm.entityDetail().contact)
+                            m("h3", "Seller : " + olxListing.vm.entityDetail().seller),
+                            m("h4", "Price : " + olxListing.vm.entityDetail().price),
+                            m("h5", "Contact : " + olxListing.vm.entityDetail().contact)
                         ]),
-                        m("span.close",{
-                            onclick:olxListing.showDetail.bind('',false,{})
-                        },"X")
-                       ]);
+                        m("span.close", {
+                            onclick: olxListing.showDetail.bind('', false, {})
+                        }, "X")
+                    ]);
             })(),
 
         ]),
