@@ -310,10 +310,29 @@ function initialize() {
           map: map,
           title: 'Hello World!'
         });*/
-        if(olxListing.vm.selectedCategory()=="cars")
-            setMarkers(map, olxListing.vm.data()["cars"]);
-        else
-             setMarkers(map, olxListing.vm.data()["bikes"]);
+        if (olxListing.vm.selectedCategory() == "cars") {
+            if (olxListing.vm.selectedBrand().length == 0)
+                setMarkers(map, olxListing.vm.data()["cars"]);
+            else {
+                var data = [];
+                olxListing.vm.data()["cars"].map(function(value, index) {
+                    if (olxListing.vm.selectedBrand().indexOf(value.brand) != -1)
+                        data.push(value);
+                });
+                setMarkers(map, data);
+            }
+        } else {
+            if (olxListing.vm.selectedBrand().length == 0)
+                setMarkers(map, olxListing.vm.data()["bikes"]);
+            else {
+                var data = [];
+                olxListing.vm.data()["bikes"].map(function(value, index) {
+                    if (olxListing.vm.selectedBrand().indexOf(value.brand) != -1)
+                        data.push(value);
+                });
+                setMarkers(map, data);
+            }
+        }
         olxListing.vm.mapInitialized(true);
     }
 }
@@ -341,7 +360,7 @@ olxListing.view = function() {
                     m("i.fa.fa-bars.fa-lg"),
                     m("img[src=images/logo.png].hidden-xs"),
                 ]),
-               /* m("div.search", m("input[type=text]"))*/
+                /* m("div.search", m("input[type=text]"))*/
             ])
         ]),
         m(".row.filter", [
@@ -438,6 +457,8 @@ olxListing.view = function() {
                         } else {
                             olxListing.vm.selectedBrand().splice(olxListing.vm.selectedBrand().indexOf(value), 1);
                         }
+                         olxListing.vm.mapInitialized(false);
+                        initialize();
                     }),
                     checked: olxListing.vm.selectedBrand().indexOf(value) != -1
                 }), m("label[for=brand" + index + "]", value)]));
