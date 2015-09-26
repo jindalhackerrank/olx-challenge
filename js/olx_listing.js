@@ -310,7 +310,10 @@ function initialize() {
           map: map,
           title: 'Hello World!'
         });*/
-        setMarkers(map, olxListing.vm.data()["cars"]);
+        if(olxListing.vm.selectedCategory()=="cars")
+            setMarkers(map, olxListing.vm.data()["cars"]);
+        else
+             setMarkers(map, olxListing.vm.data()["bikes"]);
         olxListing.vm.mapInitialized(true);
     }
 }
@@ -388,6 +391,8 @@ olxListing.view = function() {
                     },
                     onchange: function() {
                         olxListing.vm.selectedBrand([]);
+                        olxListing.vm.mapInitialized(false);
+                        initialize();
                     },
                     checked: olxListing.vm.selectedCategory() == value
                 }), m("label[for=category" + index + "]", value)]));
