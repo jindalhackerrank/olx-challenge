@@ -31,8 +31,8 @@ olxListing.vm.init = function() {
             "seller": "Ashish Jindal",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.555479",
+                "longitude": "77.196668",
                 "text": ""
             },
             "image": "images/bike-1.jpg"
@@ -43,8 +43,8 @@ olxListing.vm.init = function() {
             "seller": "Vaibhav Arora",
             "contact": "9582223889",
             "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+                "lattitude": "28.521835",
+                "longitude": "77.167662",
                 "text": ""
             },
             "image": "images/bike-2.jpg"
@@ -54,9 +54,9 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Aatif bandey",
             "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+             "location": {
+                "lattitude": "28.523042",
+                "longitude": "76.796873",
                 "text": ""
             },
             "image": "images/bike-3.jpg"
@@ -66,9 +66,9 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+             "location": {
+                "lattitude": "28.861552",
+                "longitude": "76.817472",
                 "text": ""
             },
             "image": "images/bike-4.jpg"
@@ -78,9 +78,9 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+             "location": {
+                "lattitude": "28.721944",
+                "longitude": "77.085264",
                 "text": ""
             },
             "image": "images/bike-5.jpg"
@@ -90,9 +90,9 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+             "location": {
+                "lattitude": "28.721944",
+                "longitude": "77.085264",
                 "text": ""
             },
             "image": "images/bike-6.jpg"
@@ -102,9 +102,9 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+             "location": {
+                "lattitude": "28.721944",
+                "longitude": "77.085264",
                 "text": ""
             },
             "image": "images/bike-7.jpg"
@@ -114,9 +114,9 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+             "location": {
+                "lattitude": "28.721944",
+                "longitude": "77.085264",
                 "text": ""
             },
             "image": "images/bike-8.jpg"
@@ -126,9 +126,9 @@ olxListing.vm.init = function() {
             "price": "55000",
             "seller": "Ashish Jindal",
             "contact": "9582223889",
-            "location": {
-                "lattitude": "71.2333",
-                "longitude": "77.3333",
+             "location": {
+                "lattitude": "28.721944",
+                "longitude": "77.085264",
                 "text": ""
             },
             "image": "images/bike-9.jpg"
