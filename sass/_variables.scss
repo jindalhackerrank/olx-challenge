@@ -1,0 +1,8 @@
+//colors
+
+$color_black:#000;
+
+@mixin middle-aligned-block(){
+	display: inline-block;
+	vertical-align:middle;
+}
